@@ -86,6 +86,8 @@ function setup() {
 
 function draw() {
   background(bg);
+  drawCoordinates();
+
   let w = width / 9;
   let h = height / 10;
   
@@ -137,6 +139,37 @@ function isSameTeam(piece1, piece2) {
   return (piece1.toLowerCase() === piece1 && piece2.toLowerCase() === piece2) ||
          (piece1.toUpperCase() === piece1 && piece2.toUpperCase() === piece2);
 }
+
+function drawCoordinates() {
+  textSize(18);
+  fill(0);
+  
+  if (first === 'w') {
+    // 왼쪽에서 오른쪽으로 a부터 i까지
+    for (let i = 0; i < 9; i++) {
+      text(String.fromCharCode(97 + i), i * (width / 9) + (width / 18), height - 10);
+    }
+    // 아래에서 위로 1부터 10까지
+    for (let j = 0; j < 10; j++) {
+      text(10 - j, 10, j * (height / 10) + (height / 20));
+    }
+  } else {
+    // 오른쪽에서 왼쪽으로 a부터 i까지
+    for (let i = 0; i < 9; i++) {
+      text(String.fromCharCode(97 + i), (8 - i) * (width / 9) + (width / 18), height - 10);
+    }
+    // 위에서 아래로 1부터 10까지 (보드 이미지 우측에 표시)
+    for (let j = 0; j < 10; j++) {
+      text(j + 1, width - 30, j * (height / 10) + (height / 20));
+    }
+    // 위쪽에 i부터 a까지
+    for (let i = 0; i < 9; i++) {
+      text(String.fromCharCode(105 - i), i * (width / 9) + (width / 18), 20);
+    }
+  }
+}
+
+
 
 // 궁 (K), 사 (A)
 function canMoveKing(from, to) {
