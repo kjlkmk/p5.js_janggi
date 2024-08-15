@@ -40,7 +40,8 @@ function getURLParameter(name) {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(displayWidth, displayWidth);
+  // createCanvas(displayWidth, displayHeight);
   // "한수 쉼" 버튼 추가
   let skipTurnButton = createButton('한수 쉼');
   skipTurnButton.position((width - skipTurnButton.width) / 2, height + 120);
