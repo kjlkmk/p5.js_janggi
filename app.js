@@ -1,4 +1,4 @@
-let start_fen = 'rbna1abnr/4k4/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/4K4/RNBA1ABNR w - - 0 1';
+// let start_fen = 'rbna1abnr/4k4/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/4K4/RNBA1ABNR w - - 0 1';
 // let start_fen = 'rnba1anbr/4k4/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/4K4/RNBA1ANBR b - - 0 1';
 let board = [];
 
@@ -35,9 +35,26 @@ function preload() {
     }
 }
 
+function getURLParameter(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
 function setup() {
   createCanvas(400, 400);
+  // "한수 쉼" 버튼 추가
+  let skipTurnButton = createButton('한수 쉼');
+  skipTurnButton.position(50, height + 120);
+  skipTurnButton.mousePressed(skipTurn);
   noLoop();
+
+  // URL 파라미터에서 start_fen 값을 가져옴
+  let start_fen = getURLParameter('start_fen');
+
+  // start_fen 값이 없으면 하드 코딩된 기본 값 사용
+  if (!start_fen) {
+    start_fen = 'rnba1anbr/4k4/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/4K4/RNBA1ANBR b - - 0 1';
+  }
+
   first = start_fen.split(' ')[1];
   if (first == "w") {
     fen = start_fen.split(' ')[0];
@@ -92,6 +109,10 @@ function draw() {
 
 function switchTurn() {
   turn = (turn === 'w') ? 'b' : 'w';
+}
+
+function skipTurn() {
+  switchTurn(); // 턴을 변경하여 한 수 쉼
 }
 
 function isValidMove(from, to) {
