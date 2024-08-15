@@ -40,11 +40,11 @@ function getURLParameter(name) {
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(900, 900);
   // createCanvas(displayWidth, displayHeight);
   // "한수 쉼" 버튼 추가
   let skipTurnButton = createButton('한수 쉼');
-  skipTurnButton.position((width - skipTurnButton.width) / 2, height + 120);
+  skipTurnButton.position(500, height + 100);
   skipTurnButton.mousePressed(skipTurn);
   noLoop();
 
@@ -625,39 +625,39 @@ function mousePressed() {
   console.log(board);
 }
 
-function touchStarted() {
-  // 터치 시작 시 처리할 내용
-  wood_sound.play();
-  let i = floor(mouseX / (width / 9));
-  let j = floor(mouseY / (height / 10));
+// function touchStarted() {
+//   // 터치 시작 시 처리할 내용
+//   wood_sound.play();
+//   let i = floor(mouseX / (width / 9));
+//   let j = floor(mouseY / (height / 10));
   
-  if (selectedPiece) {
-    let selectedPieceType = board[selectedPiece.j][selectedPiece.i];
-    let targetPieceType = board[j][i];
+//   if (selectedPiece) {
+//     let selectedPieceType = board[selectedPiece.j][selectedPiece.i];
+//     let targetPieceType = board[j][i];
     
-    // 같은 팀인지 확인
-    if (selectedPiece.i === i && selectedPiece.j === j) {
-      // 이미 선택된 기물을 다시 클릭한 경우
-      selectedPiece = null;
-      redraw();
-    } else if (targetPieceType === ' ' || !isSameTeam(selectedPieceType, targetPieceType)) {
-      // 이동 가능 여부 확인
-      if (canMove(selectedPieceType, {x: selectedPiece.i, y: selectedPiece.j}, {x: i, y: j}, board)) {
-        board[j][i] = selectedPieceType;
-        board[selectedPiece.j][selectedPiece.i] = ' ';
-        selectedPiece = null;
-        switchTurn(); // 턴 변경
-        redraw();
-      }
-    }
-  } else if (board[j][i] in images) {
-    if(isPlayerPiece(board[j][i])){
-      selectedPiece = {i, j};
-      redraw(); // 선택된 기물을 표시하기 위해 화면을 다시 그립니다.
-    }
+//     // 같은 팀인지 확인
+//     if (selectedPiece.i === i && selectedPiece.j === j) {
+//       // 이미 선택된 기물을 다시 클릭한 경우
+//       selectedPiece = null;
+//       redraw();
+//     } else if (targetPieceType === ' ' || !isSameTeam(selectedPieceType, targetPieceType)) {
+//       // 이동 가능 여부 확인
+//       if (canMove(selectedPieceType, {x: selectedPiece.i, y: selectedPiece.j}, {x: i, y: j}, board)) {
+//         board[j][i] = selectedPieceType;
+//         board[selectedPiece.j][selectedPiece.i] = ' ';
+//         selectedPiece = null;
+//         switchTurn(); // 턴 변경
+//         redraw();
+//       }
+//     }
+//   } else if (board[j][i] in images) {
+//     if(isPlayerPiece(board[j][i])){
+//       selectedPiece = {i, j};
+//       redraw(); // 선택된 기물을 표시하기 위해 화면을 다시 그립니다.
+//     }
    
-  }
+//   }
   
-  console.log(selectedPiece);
-  console.log(board);
-}
+//   console.log(selectedPiece);
+//   console.log(board);
+// }
