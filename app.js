@@ -141,7 +141,7 @@ function isSameTeam(piece1, piece2) {
 }
 
 function drawCoordinates() {
-  textSize(18);
+  textSize(20);
   fill(0);
   
   if (first === 'w') {
