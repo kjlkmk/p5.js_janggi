@@ -44,24 +44,34 @@ function windowResized() {
 }
 
 function adjustCanvasSize() {
-  if (windowWidth > 600) {
-    resizeCanvas(600, 600);
+  if (windowWidth > 1024) {
+    resizeCanvas(700, 700);
+    console.log(windowWidth);
   } else {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(700, 700);
   }
 }
+
+function detectDevice() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobile = /mobile|android|iphone|ipad|ipod/.test(userAgent);
+
+  if (isMobile) {
+    console.log("모바일 기기에서 접속하셨습니다.");
+    createCanvas(windowWidth * 0.95, windowHeight * 0.95);
+  } else {
+    console.log("컴퓨터에서 접속하셨습니다.");
+    createCanvas(700, 700);
+  }
+}
+
 
 // HTML 버튼 클릭 이벤트 리스너 추가
 document.getElementById('myButton').addEventListener('click', skipTurn);
 
 function setup() {
-  createCanvas(900, 900);
-  adjustCanvasSize();
-  // createCanvas(displayWidth, displayHeight);
-  // "한수 쉼" 버튼 추가
-  // let skipTurnButton = createButton('한수 쉼');
-  // skipTurnButton.position(500, height + 100);
-  // skipTurnButton.mousePressed(skipTurn);
+  detectDevice();
+  // windowResized();
   noLoop();
 
   // URL 파라미터에서 start_fen 값을 가져옴
