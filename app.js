@@ -61,7 +61,7 @@ function detectDevice() {
     createCanvas(windowWidth * 0.95, windowWidth);
   } else {
     console.log("컴퓨터에서 접속하셨습니다.");
-    createCanvas(650, 650);
+    createCanvas(600, 600);
   }
 }
 
