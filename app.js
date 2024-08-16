@@ -58,7 +58,7 @@ function detectDevice() {
 
   if (isMobile) {
     console.log("모바일 기기에서 접속하셨습니다.");
-    createCanvas(windowWidth * 0.95, windowHeight * 0.95);
+    createCanvas(windowWidth * 0.95, windowWidth;
   } else {
     console.log("컴퓨터에서 접속하셨습니다.");
     createCanvas(700, 700);
