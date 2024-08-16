@@ -39,13 +39,29 @@ function getURLParameter(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
 
+function windowResized() {
+  adjustCanvasSize();
+}
+
+function adjustCanvasSize() {
+  if (windowWidth > 600) {
+    resizeCanvas(600, 600);
+  } else {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+}
+
+// HTML 버튼 클릭 이벤트 리스너 추가
+document.getElementById('myButton').addEventListener('click', skipTurn);
+
 function setup() {
   createCanvas(900, 900);
+  adjustCanvasSize();
   // createCanvas(displayWidth, displayHeight);
   // "한수 쉼" 버튼 추가
-  let skipTurnButton = createButton('한수 쉼');
-  skipTurnButton.position(500, height + 100);
-  skipTurnButton.mousePressed(skipTurn);
+  // let skipTurnButton = createButton('한수 쉼');
+  // skipTurnButton.position(500, height + 100);
+  // skipTurnButton.mousePressed(skipTurn);
   noLoop();
 
   // URL 파라미터에서 start_fen 값을 가져옴
